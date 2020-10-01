@@ -22,12 +22,19 @@ cat A.tmp T.tmp C.tmp G.tmp > seq.tmp
 #Uniq with -c character count command is used to output a table
 uniq -c seq.tmp > seq_table.tmp
 
+#Creating gc variable containing addition of C and G column values
+gc=$(tail -n 2 seq_table.tmp | awk '{print $1}' | paste -sd+ - | bc)
+
+#Creating gc_content variable containing gc divided by total length of genome
+gc_content=$(echo "scale=4; $gc/$1" | bc)
+
 #And we're adding a terminal output with the analysis of the synthetic DNA
 echo "##################################################"
 echo "     Total sequence composition is as follows     "
 echo "--------------------------------------------------"
 cat seq_table.tmp
 echo "--------------------------------------------------"
+echo "     GC content is $gc_content                    "
 echo "##################################################"
 echo "                                                  "
 
