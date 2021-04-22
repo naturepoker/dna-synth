@@ -21,7 +21,7 @@ sys	0m0.037s
 ~~~
 
 A 100bp example fasta output is included, generated via ./dna_synth.sh 100   
-CLI output for the process should be :
+CLI output for the process was :
 
 ~~~
 
